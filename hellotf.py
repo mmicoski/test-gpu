@@ -1,11 +1,13 @@
 ''' Simple operations that show if tensorflow is really being able to use the GPU 
-Based on: https://stackoverflow.com/questions/38009682/how-to-tell-if-tensorflow-is-using-gpu-acceleration-from-inside-python-shell
+Based on: 
+[1] https://www.pugetsystems.com/labs/hpc/The-Best-Way-to-Install-TensorFlow-with-GPU-Support-on-Windows-10-Without-Installing-CUDA-1187/
+[2] https://stackoverflow.com/questions/38009682/how-to-tell-if-tensorflow-is-using-gpu-acceleration-from-inside-python-shell
 '''
 
 print("\nimport tf")
 import tensorflow as tf
 
-
+# test flags
 gpuav = tf.test.is_gpu_available()
 gpuname = tf.test.gpu_device_name()
 print("===============")
@@ -14,6 +16,7 @@ print("GPU name=<%s>"%str(gpuname))
 print("===============")
 
 
+# basic hello world, from [1]
 print("\ntf.constant")
 hello = tf.constant('Hello, TensorFlow!')
 
@@ -24,6 +27,7 @@ print("\nsess.run")
 print(sess.run(hello))
 
 
+# force calculations with GPU, from [2]
 print("\nwith tf.device('/gpu:0')")
 with tf.device('/gpu:0'):
     a = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[2, 3], name='a')
