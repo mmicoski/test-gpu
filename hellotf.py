@@ -7,7 +7,7 @@ Based on:
 print("\nimport tf")
 import tensorflow as tf
 
-# test flags
+# test flags, from [2]
 gpuav = tf.test.is_gpu_available()
 gpuname = tf.test.gpu_device_name()
 print("===============")
